@@ -22,6 +22,7 @@ header {
 }
 
 p {
+    font-size: medium;
     font-style: italic;
 }
 
@@ -34,9 +35,18 @@ main {
     max-width: 1200px;
     margin: 20px auto;
 }
+.quote {
+    text-align: center;
+}
+.quoting {
+    color: rgb(12, 14, 143);
+    text-align: center;
+    text-decoration: underline;
+}
 
 /* Gallery Section */
 .section {
+    font-family: 'Courier New', Courier, monospace;
     margin-top: 20px;
 }
 
