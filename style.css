@@ -13,6 +13,20 @@ body {
     align-items: center;
 }
 
+.dogbutton {
+    background-color: rgba(217, 219, 216, 0.637);
+    color: rgb(0, 0, 0);
+    font-size: large;
+    font: bold Verdana;
+}
+
+.catbutton {
+    background-color: rgb(217, 219, 216, 0.637);
+    color: rgb(0, 0, 0);
+    font-size:large;
+    font:bold Verdana;
+}
+
 header {
     background-color: #4CAF50;
     color: white;
@@ -45,9 +59,25 @@ main {
 }
 
 /* Gallery Section */
-.section {
+.section1 {
+    border-radius: 6px;
     font-family: 'Courier New', Courier, monospace;
     margin-top: 20px;
+    background-color: rgba(43, 255, 0, 0.726);
+}
+
+.section2 {
+    border-radius: 6px;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 20px;
+    background-color: rgba(255, 251, 0, 0.575);
+}
+
+.section3 {
+    border-radius: 6px;
+    font-family: 'Courier New', Courier, monospace;
+    margin-top: 20px;
+    background-color: rgba(255, 0, 234, 0.781);
 }
 
 h2 {
@@ -73,3 +103,4 @@ h2 {
 .photos img:hover {
     transform: scale(1.2);
 }
+
