@@ -5,9 +5,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dogs and Cats Photo Gallery</title>
     <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
 </head>
-<body>
+     <script>
+        const randompdog = [];
+        const rancat = [];
+// Fetch a random dog image and add it to the randompets array
+async function fetchRandomDog2() {
+    const response = await fetch('https://dog.ceo/api/breeds/image/random');
+    const data = await response.json();
+    randompdog.push(data.message); // Adds the dog image URL to the array
+}
 
+async function fetchAndDisplayRandomPet() {
+    // Clear the array in case it has data from previous fetches
+    randompdog.length = 0;
+  
+    // Fetch one dog and two cat images for variety
+    await fetchRandomDog2();
+    await fetchRandomDog2();
+    await fetchRandomDog2();
+
+    // Assign fetched URLs to the specific image elements
+    document.getElementById('dog1').src = randompdog[0];
+    document.getElementById('dog2').src = randompdog[1];
+    document.getElementById('dog3').src = randompdog[2];
+}
+
+async function fetchRandomCat1() {
+    const response = await fetch('https://api.thecatapi.com/v1/images/search');
+    const data = await response.json();
+    rancat.push(data[0].url); // Adds the cat image URL to the array
+}
+
+async function fetchAndDisplayRandomPet2() {
+    rancat.length = 0;
+  
+    await fetchRandomCat1();
+    await fetchRandomCat1();
+    await fetchRandomCat1();
+
+    // Assign fetched URLs to the specific image elements
+    document.getElementById('cat1').src = rancat[0];
+    document.getElementById('cat2').src = rancat[1];
+    document.getElementById('cat3').src = rancat[2];
+}
+     </script>
+<body>
+    
     <header>
         <h1>Dogs and Cats Photos..</h1>
         <h3> lots of pet photos</h3>
@@ -19,29 +64,45 @@
             <h3>Quote of the Day</h3>
             <div class="quoting">
                 <p id="daily-quote"></p>
-                <script src="script.js"></script>
+                
             </div>
         </section>
 
-        <section class="section" id="dogs">
+        <section class="section1" id="dogs">
             <h2>Dogs</h2>
-            <p>Dogs are energetic, strong and loyal so they're great..</p>
+            <p>Dogs are energetic, strong and loyal <br>
+             so they're great..</p>
+             <button onclick="fetchAndDisplayRandomPet()" class="dogbuttons" id="dogbutton"> ></button>
             <div class="photos">
-                <img src="https://i.etsystatic.com/21271305/r/il/11e111/3792393410/il_570xN.3792393410_ea0h.jpg" alt="Cute dog 1">
-                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNq_7pyCPCShrX9Xf8seFQW7kBUaJYNTOybw&s" alt="Cute Dog 2">
-                <img src="https://www.blackburnromey.com/wp-content/uploads/2022/11/American-Pit-Bull-Terrier.jpg" alt="Cute Dog 3">
+                <img src="https://i.etsystatic.com/21271305/r/il/11e111/3792393410/il_570xN.3792393410_ea0h.jpg" alt="Cute dog 1" id="dog1">
+                <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRNq_7pyCPCShrX9Xf8seFQW7kBUaJYNTOybw&s" alt="Cute Dog 2" id="dog2">
+                <img src="https://www.blackburnromey.com/wp-content/uploads/2022/11/American-Pit-Bull-Terrier.jpg" alt="Cute Dog 3" id="dog3">
             </div>
         </section>
 
-        <section class="section" id="cats">
+        <section class="section2" id="cats">
             <h2>Cats</h2>
-            <p>Cats are cute but they're overrated be for real</p>
+            <p>Cats are cute but they're <br>
+             overrated be for real</p>
+             <button type="submit" onclick="fetchAndDisplayRandomPet2()" class="catbutton" id="catbutton"> ></button>
             <div class="photos">
-                <img src="https://media.istockphoto.com/id/467801366/photo/lovable-scottish-fold-cat.jpg?s=612x612&w=0&k=20&c=0OAfVoF3NaPUGRJG9260elTgUykTxFbNOlDlEVNu_Hc=" alt="Cute Cat 1">
-                <img src="https://i.pinimg.com/236x/3b/b4/49/3bb44930261f926f5bd51ae472042ce6.jpg" alt="Cute Cat 2">
-                <img src="https://i.pinimg.com/236x/9a/7e/6c/9a7e6cc495943d923ec98a6753eb9ce4.jpg" alt="Cute Cat 3">
+                <img src="https://media.istockphoto.com/id/467801366/photo/lovable-scottish-fold-cat.jpg?s=612x612&w=0&k=20&c=0OAfVoF3NaPUGRJG9260elTgUykTxFbNOlDlEVNu_Hc=" id="cat1" alt="Cute Cat 1">
+                <img src="https://i.pinimg.com/236x/3b/b4/49/3bb44930261f926f5bd51ae472042ce6.jpg" alt="Cute Cat 2" id="cat2">
+                <img src="https://i.pinimg.com/236x/9a/7e/6c/9a7e6cc495943d923ec98a6753eb9ce4.jpg" alt="Cute Cat 3" id="cat3">
+            </div>
+        </section>
+        <section class="section3" id="randompets">
+            <h2>Random pets</h2>
+            <p>see random pets (refresh the page) </p>
+            <div class="photos">
+                <img src="" id="randompet1">
+                <img src="" id="randompet2">
+                <img src="" id="randompet3">
             </div>
         </section>
     </main>
 </body>
+<footer>
+    <h3 class="foot1">Ruby_Woof AKA Reference Gang Boss</h3>
+</footer>
 </html>
