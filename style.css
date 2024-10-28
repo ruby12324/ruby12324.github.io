@@ -1,4 +1,4 @@
- {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
@@ -11,6 +11,17 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
+}
+
+#dogs {
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+#cats {
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+#randompets {
+    font-family: 'Times New Roman', Times, serif;
 }
 
 .dogbutton {
@@ -33,11 +44,6 @@ header {
     padding: 1em;
     width: 100%;
     text-align: center;
-}
-
-p {
-    font-size: medium;
-    font-style: italic;
 }
 
 h1 {
@@ -77,15 +83,24 @@ main {
     border-radius: 6px;
     font-family: 'Courier New', Courier, monospace;
     margin-top: 20px;
-    background-color: rgba(255, 0, 234, 0.781);
+    background-color: rgba(214, 46, 206, 0.911);
 }
 
-h2 {
-    font-size: 1.5em;
-    color: #068a32;
+#dogh {
     margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #30a30d;
 }
-
+#cath {
+    margin-bottom: 10px;
+    font-size: 1.5em;
+    color: #2960d4;
+}
+#ranh {
+    margin-bottom: 10px;
+    font-size: 2em;
+    color: #f7e11f;
+}
 /* Photo Grid */
 .photos {
     display: grid;
