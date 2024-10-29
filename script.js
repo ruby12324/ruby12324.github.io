@@ -1,4 +1,6 @@
 const randompets = [];
+var dogbutton = document.getElementById('dogbuttono')
+var catbutton = document.getElementById('catbuttono')
 const quotes = [
     "Believe you can and you're halfway there.",
     "The only limit to our realization of tomorrow is our doubts of today.",
@@ -9,40 +11,57 @@ const quotes = [
     "You are braver than you believe, stronger than you seem, and smarter than you think.",
     "Those who can make you believe absurdities can make you commit atrocities. In order to attain the impossible, one must attempt the absurd"
 ];
-
-// Fetch a random dog image and add it to the randompets array
-async function fetchRandomDog() {
-    const response = await fetch('https://dog.ceo/api/breeds/image/random');
+async function fetchPetImage(petType) {
+    const url = petType === 'dog' ? 'https://dog.ceo/api/breeds/image/random' : 'https://api.thecatapi.com/v1/images/search';
+    const response = await fetch(url);
     const data = await response.json();
-    randompets.push(data.message); // Adds the dog image URL to the array
+    return petType === 'dog' ? data.message : data[0].url;
 }
 
-// Fetch a random cat image and add it to the randompets array
-async function fetchRandomCat() {
-    const response = await fetch('https://api.thecatapi.com/v1/images/search');
-    const data = await response.json();
-    randompets.push(data[0].url); // Adds the cat image URL to the array
+async function displayDogImages() {
+    const dogImages = await Promise.all([fetchPetImage('dog'), fetchPetImage('dog'), fetchPetImage('dog')]);
+    document.getElementById('dog1').src = dogImages[0];
+    document.getElementById('dog2').src = dogImages[1];
+    document.getElementById('dog3').src = dogImages[2];
 }
 
-// Fetch multiple pet images and update the HTML elements
-async function fetchAndDisplayRandomPets() {
-    // Clear the array in case it has data from previous fetches
-    randompets.length = 0;
-  
-    // Fetch one dog and two cat images for variety
-    await fetchRandomDog();
-    await fetchRandomCat();
-    await fetchRandomDog();
-
-    // Assign fetched URLs to the specific image elements
-    document.getElementById('randompet1').src = randompets[0];
-    document.getElementById('randompet2').src = randompets[1];
-    document.getElementById('randompet3').src = randompets[2];
+// Fetch and display 3 images of cats
+async function displayCatImages() {
+    const catImages = await Promise.all([fetchPetImage('cat'), fetchPetImage('cat'), fetchPetImage('cat')]);
+    document.getElementById('cat1').src = catImages[0];
+    document.getElementById('cat2').src = catImages[1];
+    document.getElementById('cat3').src = catImages[2];
 }
+
+// Fetch and display 3 random pet images (either dog or cat)
+async function displayRandomPetImages() {
+    const randomPetImages = await Promise.all([
+        fetchPetImage(Math.random() < 0.5 ? 'dog' : 'cat'),
+        fetchPetImage(Math.random() < 0.5 ? 'dog' : 'cat'),
+        fetchPetImage(Math.random() < 0.5 ? 'dog' : 'cat')
+    ]);
+    document.getElementById('randompet1').src = randomPetImages[0];
+    document.getElementById('randompet2').src = randomPetImages[1];
+    document.getElementById('randompet3').src = randomPetImages[2];
+}
+
+// Initialize images on page load
+window.addEventListener('load', () => {
+    displayDogImages();
+    displayCatImages();
+    displayRandomPetImages();
+});
+
+dogbutton.addEventListener('click', async () => {
+    await displayDogImages();
+});
+
+catbutton.addEventListener('click', async () => {
+    await displayCatImages();
+});
 
 document.addEventListener("DOMContentLoaded", () => {
     // Call the function to fetch and display images on page load
-    fetchAndDisplayRandomPets();
 
     // Calculate today's index based on the day of the year
     const today = new Date();
