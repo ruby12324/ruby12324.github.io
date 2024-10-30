@@ -50,19 +50,6 @@ window.addEventListener('load', () => {
     displayDogImages();
     displayCatImages();
     displayRandomPetImages();
-
-     const today = new Date();
-    const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
-    const quoteIndex = dayOfYear % quotes.length;
-
-    // Display the daily quote in the #daily-quote element
-    const quoteElement = document.getElementById('daily-quote');
-    if (quoteElement) {
-        quoteElement.textContent = quotes[quoteIndex];
-    } else {
-        console.error("Element with id 'daily-quote' not found.");
-    }
-}
 });
 
 dogbutton.addEventListener('click', async () => {
