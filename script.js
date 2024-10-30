@@ -1,6 +1,4 @@
 const randompets = [];
-var dogbutton = document.getElementById('dogbuttono')
-var catbutton = document.getElementById('catbuttono')
 const quotes = [
     "Believe you can and you're halfway there.",
     "The only limit to our realization of tomorrow is our doubts of today.",
@@ -46,6 +44,8 @@ async function displayRandomPetImages() {
 }
 
 window.addEventListener('DOMContentLoaded', () => {
+    var dogbut = document.getElementById('dogbuttono')
+    var catbut = document.getElementById('catbuttono')
     const today = new Date();
     const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
     const quoteIndex = dayOfYear % quotes.length;
@@ -62,4 +62,6 @@ window.addEventListener('DOMContentLoaded', () => {
     displayDogImages();
     displayCatImages();
     displayRandomPetImages();
+    dogbut.addEventListener('click', displayDogImages);
+    catbut.addEventListener('click', displayCatImages);
 });
