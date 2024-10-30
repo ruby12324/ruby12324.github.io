@@ -63,12 +63,3 @@ window.addEventListener('DOMContentLoaded', () => {
     displayCatImages();
     displayRandomPetImages();
 });
-
-dogbutton.addEventListener('click', async () => {
-    await displayDogImages();
-});
-
-catbutton.addEventListener('click', async () => {
-    await displayCatImages();
-});
-
