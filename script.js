@@ -45,8 +45,20 @@ async function displayRandomPetImages() {
     document.getElementById('randompet3').src = randomPetImages[2];
 }
 
-// Initialize images on page load
-window.addEventListener('load', () => {
+window.addEventListener('DOMContentLoaded', () => {
+    const today = new Date();
+    const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+    const quoteIndex = dayOfYear % quotes.length;
+
+    // Display the daily quote
+    const quoteElement = document.getElementById('daily-quote');
+    if (quoteElement) {
+        quoteElement.textContent = quotes[quoteIndex];
+    } else {
+        console.error("Element with id 'daily-quote' not found.");
+    }
+
+    // Initialize images
     displayDogImages();
     displayCatImages();
     displayRandomPetImages();
@@ -60,19 +72,3 @@ catbutton.addEventListener('click', async () => {
     await displayCatImages();
 });
 
-document.addEventListener("DOMContentLoaded", () => {
-    // Call the function to fetch and display images on page load
-
-    // Calculate today's index based on the day of the year
-    const today = new Date();
-    const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
-    const quoteIndex = dayOfYear % quotes.length;
-
-    // Display the daily quote in the #daily-quote element
-    const quoteElement = document.getElementById('daily-quote');
-    if (quoteElement) {
-        quoteElement.textContent = quotes[quoteIndex];
-    } else {
-        console.error("Element with id 'daily-quote' not found.");
-    }
-});
