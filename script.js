@@ -58,7 +58,6 @@ window.addEventListener('DOMContentLoaded', () => {
         console.error("Element with id 'daily-quote' not found.");
     }
 
-    // Initialize images
     displayDogImages();
     displayCatImages();
     displayRandomPetImages();
