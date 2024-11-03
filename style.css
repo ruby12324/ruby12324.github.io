@@ -13,10 +13,8 @@ body {
     align-items: center;
 }
 
-#dogs {
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
-}
-#cats {
+#dogs, #cats {
+    /*font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;*/
     font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
@@ -24,18 +22,11 @@ body {
     font-family: 'Times New Roman', Times, serif;
 }
 
-.dogbutton {
-    background-color: rgba(217, 219, 216, 0.637);
+.dogbuttons, .catbutton {
+    background-color: rgba(95, 231, 26, 0.637);
     color: rgb(0, 0, 0);
     font-size: large;
     font: bold Verdana;
-}
-
-.catbutton {
-    background-color: rgb(217, 219, 216, 0.637);
-    color: rgb(0, 0, 0);
-    font-size:large;
-    font:bold Verdana;
 }
 
 header {
@@ -87,11 +78,11 @@ main {
 }
 
 footer {
-            width: 100%;
-            background-color:#4CAF50;
-            color:#ffffff;
-            text-align: center;
-        }
+    width: 100%;
+    background-color:#4CAF50;
+    color:#ffffff;
+    text-align: center;
+}
 
 #dogh {
     margin-bottom: 10px;
