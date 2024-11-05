@@ -6,6 +6,7 @@ const quotes = [
     "Keep your face always toward the sunshine—and shadows will fall behind you.",
     "Success is not final, failure is not fatal: It is the courage to continue that counts.",
     "Don't watch the clock; do what it does. Keep going.",
+    "The law of attraction works the same way as 'you are what you eat'",
     "You are braver than you believe, stronger than you seem, and smarter than you think.",
     "Those who can make you believe absurdities can make you commit atrocities. In order to attain the impossible, one must attempt the absurd"
 ];
