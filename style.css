@@ -15,8 +15,8 @@ body {
 }
 
 #dogs, #cats {
-    /*font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;*/
-    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    font-family: 'Times New Roman', Times, serif;
+    font-weight: bold;
 }
 
 #randompets {
@@ -51,29 +51,36 @@ main {
 .quote {
     text-align: center;
     color: #ffffff;
+    text-shadow: 1px 1px black;
 }
 .quoting {
     color: rgb(255, 255, 255);
     text-align: center;
+    font-family: 'Times New Roman', Times, serif;
     text-decoration: underline;
-    background-color: #010422;
+    text-transform: capitalize;
+    font-weight: bolder;
     opacity: 80%;
-    width: 100%;
+    text-shadow: 1px 1px black;
 }
 
 /* Gallery Section */
 .section1 {
+    color:white;
     border-radius: 6px;
     font-family: 'Courier New', Courier, monospace;
     margin-top: 20px;
     background-color: rgba(255, 153, 0, 0.726);
+    text-shadow: 1px 1px black;
 }
 
 .section2 {
+    color: white;
     border-radius: 6px;
     font-family: 'Courier New', Courier, monospace;
     margin-top: 20px;
-    background-color: rgba(0, 255, 128, 0.575);
+    background-color: rgba(0, 255, 128, 0.781);
+    text-shadow: 1px 1px black;
 }
 
 .section3 {
@@ -81,6 +88,7 @@ main {
     font-family: 'Courier New', Courier, monospace;
     margin-top: 20px;
     background-color: rgba(214, 46, 206, 0.911);
+    text-shadow: 1px 1px black;
 }
 
 footer {
@@ -94,14 +102,17 @@ footer {
 #dogh {
     margin-bottom: 10px;
     font-size: 1.5em;
-    color: #30a30d;
+    color: #42ee0e;
+    text-shadow: 1px 1px black;
 }
 #cath {
+    text-shadow: 1px 1px black;
     margin-bottom: 10px;
     font-size: 1.5em;
-    color: #2960d4;
+    color: #1177fc;
 }
 #ranh {
+    text-shadow: 1px 1px black;
     margin-bottom: 10px;
     font-size: 2em;
     color: #f7e11f;
@@ -123,3 +134,4 @@ footer {
 .photos img:hover {
     transform: scale(1.2);
 }
+
