@@ -1,14 +1,13 @@
 const randompets = [];
 const quotes = [
-    "Believe you can and you're halfway there.",
-    "The only limit to our realization of tomorrow is our doubts of today.",
-    "You are never too old to set another goal or to dream a new dream.",
-    "Keep your face always toward the sunshine—and shadows will fall behind you.",
-    "Success is not final, failure is not fatal: It is the courage to continue that counts.",
-    "Don't watch the clock; do what it does. Keep going.",
-    "The law of attraction works the same way as 'you are what you eat'",
+    "Believe you can and you're halfway there.", "The only limit to our realization of tomorrow is our doubts of today.",
+    "You are never too old to set another goal or to dream a new dream.", "Keep your face always toward the sunshine—and shadows will fall behind you.",
+    "Success is not final, failure is not fatal: It is the courage to continue that counts.", "Don't watch the clock; do what it does. Keep going.",
     "You are braver than you believe, stronger than you seem, and smarter than you think.",
-    "Those who can make you believe absurdities can make you commit atrocities. In order to attain the impossible, one must attempt the absurd"
+    "You think life is bad? Wait till you see mine",
+    "The law of attraction works the same way as 'you are what you eat'",
+    "Those who can make you believe absurdities can make you commit atrocities. In order to attain the impossible, one must attempt the absurd",
+    "Being scared doesn't make me weak. It just means I'm still alive."
 ];
 async function fetchPetImage(petType) {
     const url = petType === 'dog' ? 'https://dog.ceo/api/breeds/image/random' : 'https://api.thecatapi.com/v1/images/search';
@@ -59,6 +58,22 @@ window.addEventListener('DOMContentLoaded', () => {
         console.error("Element with id 'daily-quote' not found.");
     }
 
+const menuIcon = document.getElementById("menu-icon");
+const sidebar = document.getElementById("sidebar");
+
+menuIcon.addEventListener("click", () => {
+    sidebar.classList.toggle("visible");
+    menuIcon.src = sidebar.classList.contains("visible")
+    ? "https://icon-library.com/images/close-icon-png/close-icon-png-29.jpg" 
+    : "https://static-00.iconduck.com/assets.00/hamburger-menu-icon-512x464-8u2owc1t.png"; 
+    if (sidebar.classList.contains("visible")) {
+        menuIcon.style.position = "fixed";
+    } else {
+        menuIcon.style.position = "absolute";
+    }
+  });
+
+    // Initialize images
     displayDogImages();
     displayCatImages();
     displayRandomPetImages();
