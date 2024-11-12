@@ -9,6 +9,7 @@ const quotes = [
     "Those who can make you believe absurdities can make you commit atrocities. In order to attain the impossible, one must attempt the absurd",
     "Being scared doesn't make me weak. It just means I'm still alive."
 ];
+
 async function fetchPetImage(petType) {
     const url = petType === 'dog' ? 'https://dog.ceo/api/breeds/image/random' : 'https://api.thecatapi.com/v1/images/search';
     const response = await fetch(url);
@@ -16,67 +17,88 @@ async function fetchPetImage(petType) {
     return petType === 'dog' ? data.message : data[0].url;
 }
 
-async function displayDogImages() {
-    const dogImages = await Promise.all([fetchPetImage('dog'), fetchPetImage('dog'), fetchPetImage('dog')]);
-    document.getElementById('dog1').src = dogImages[0];
-    document.getElementById('dog2').src = dogImages[1];
-    document.getElementById('dog3').src = dogImages[2];
+async function displayImages(sectionId, petType) {
+    const images = document.querySelectorAll(`#${sectionId} img`);
+    const fetchedImages = await Promise.all(Array.from(images).map(() => fetchPetImage(petType)));
+
+    fetchedImages.forEach((url, index) => {
+        const img = images[index];
+        img.style.opacity = '0';  // Start fade-out before src update
+        img.src = url;
+        img.onload = () => {
+            setTimeout(() => {
+                img.style.transition = 'opacity 0.5s ease-in-out';
+                img.style.opacity = '1';
+            }, 50);
+        };
+    });
 }
 
-// Fetch and display 3 images of cats
-async function displayCatImages() {
-    const catImages = await Promise.all([fetchPetImage('cat'), fetchPetImage('cat'), fetchPetImage('cat')]);
-    document.getElementById('cat1').src = catImages[0];
-    document.getElementById('cat2').src = catImages[1];
-    document.getElementById('cat3').src = catImages[2];
-}
-
-// Fetch and display 3 random pet images (either dog or cat)
-async function displayRandomPetImages() {
-    const randomPetImages = await Promise.all([
-        fetchPetImage(Math.random() < 0.5 ? 'dog' : 'cat'),
-        fetchPetImage(Math.random() < 0.5 ? 'dog' : 'cat'),
+async function displayRandomImages() {
+    const randomImages = document.querySelectorAll('#randompets img');
+    const promises = Array.from(randomImages).map(() =>
         fetchPetImage(Math.random() < 0.5 ? 'dog' : 'cat')
-    ]);
-    document.getElementById('randompet1').src = randomPetImages[0];
-    document.getElementById('randompet2').src = randomPetImages[1];
-    document.getElementById('randompet3').src = randomPetImages[2];
+    );
+    const fetchedImages = await Promise.all(promises);
+
+    fetchedImages.forEach((image, index) => {
+        const img = randomImages[index];
+        img.style.opacity = '0';
+        img.src = image;
+        img.onload = () => {
+            setTimeout(() => {
+                img.style.transition = 'opacity 0.5s ease-in-out';
+                img.style.opacity = '1'; // Fade-in 
+            }, 50);
+        };
+    });
 }
 
 window.addEventListener('DOMContentLoaded', () => {
-    var dogbut = document.getElementById('dogbuttono')
-    var catbut = document.getElementById('catbuttono')
-    const today = new Date();
-    const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
-    const quoteIndex = dayOfYear % quotes.length;
-
-    // Display the daily quote
+    const dogButton = document.getElementById('dogbuttono');
+    const catButton = document.getElementById('catbuttono');
     const quoteElement = document.getElementById('daily-quote');
+    const menuIcon = document.getElementById("menu-icon");
+    const sidebar = document.getElementById("sidebar");
+    const petpic = [
+        "https://www.hf.uio.no/imk/forskning/aktuelt/aktuelle-saker/2020/bilder/internettdyr_660.jpg",
+        "https://c4.wallpaperflare.com/wallpaper/26/488/979/the-sun-music-the-city-stars-space-hd-wallpaper-preview.jpg",
+        "https://i.pinimg.com/736x/4b/0d/53/4b0d535fb9d16d3b3182c6cb96a2b759.jpg",
+        "https://i.pinimg.com/736x/8c/a7/38/8ca738dc9939ee141ff7792f963d4979.jpg",
+        "https://i.pinimg.com/originals/f9/46/ec/f946ecfbd3bec03b6ffc650c176b6eb5.gif"
+    ]
+
+    function changebackground() {
+        const randomImage = petpic[Math.floor(Math.random() * petpic.length)];
+        document.body.style.backgroundImage = `url(${randomImage})`;
+    }
+
+    setInterval(changebackground, 15000);
+
+    changebackground();
+   
+
     if (quoteElement) {
+        const today = new Date();
+        const dayOfYear = Math.floor((today - new Date(today.getFullYear(), 0, 0)) / 86400000);
+        const quoteIndex = dayOfYear % quotes.length;
         quoteElement.textContent = quotes[quoteIndex];
-    } else {
-        console.error("Element with id 'daily-quote' not found.");
     }
 
-const menuIcon = document.getElementById("menu-icon");
-const sidebar = document.getElementById("sidebar");
+    menuIcon.addEventListener("click", () => {
+        sidebar.classList.toggle("visible");
+        menuIcon.src = sidebar.classList.contains("visible")
+            ? "https://icon-library.com/images/close-icon-png/close-icon-png-29.jpg" 
+            : "https://static-00.iconduck.com/assets.00/hamburger-menu-icon-512x464-8u2owc1t.png"; 
+        menuIcon.style.position = sidebar.classList.contains("visible") ? "fixed" : "absolute";
+    });
 
-menuIcon.addEventListener("click", () => {
-    sidebar.classList.toggle("visible");
-    menuIcon.src = sidebar.classList.contains("visible")
-    ? "https://icon-library.com/images/close-icon-png/close-icon-png-29.jpg" 
-    : "https://static-00.iconduck.com/assets.00/hamburger-menu-icon-512x464-8u2owc1t.png"; 
-    if (sidebar.classList.contains("visible")) {
-        menuIcon.style.position = "fixed";
-    } else {
-        menuIcon.style.position = "absolute";
-    }
-  });
+    displayImages('dogs', 'dog');
+    displayImages('cats', 'cat');
+    displayRandomImages();
 
-    // Initialize images
-    displayDogImages();
-    displayCatImages();
-    displayRandomPetImages();
-    dogbut.addEventListener('click', displayDogImages);
-    catbut.addEventListener('click', displayCatImages);
+    dogButton.addEventListener('click', () => displayImages('dogs', 'dog'));
+    catButton.addEventListener('click', () => displayImages('cats', 'cat'));
+
+    
 });
